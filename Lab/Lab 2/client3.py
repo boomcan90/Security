@@ -17,6 +17,9 @@ import random
 from collections import Counter
 import binascii
 
+def counter(l):
+    return[(l.count(x), x) for x in set(l)]
+
 
 def encrypt(key, plaintext):
     """Encrypt the string and return the ciphertext"""
@@ -66,40 +69,46 @@ if __name__ == "__main__":
         cipher_text_ascii += chr(c)
 
     
-    cipher_text_ascii_fd = Counter(cipher_text_ascii).most_common()
+    cipher_text_ascii_fd = sorted(counter(cipher_text_ascii), reverse=True)
+    cipher_text_ascii_fd_2 = Counter(cipher_text_ascii).most_common()
     with open("sherlock.txt") as f: 
         test_data = f.read()
         test_data = test_data.lower()
 
 
-    ETAOIN2 = Counter(test_data).most_common()
+    ETAOIN2 = counter(test_data)
     # print(ETAOIN2)
     # print(len(ETAOIN2))
 
     ETAOIN_items = []
     for i in range(len(ETAOIN2)):
-        ETAOIN_items.append(ETAOIN2[i][0])
+        ETAOIN_items.append(ETAOIN2[i][1])
 
 
     # by hit and trial :)
     ETAOIN = [' ', 'e', 't', 'a', 'o', 'h', 'r', 'n', 'd', 'i', 's', 'l', 'w', '\n', 'g', ',', 'u', 'c', 'm', 'y', 'f', 'p', '.', 'b', 'k', 'v', '"', '-', "'", 'j', 'q', '?', '\t', 'x', '!', 'z', '1', ';', '0', ':', '*', '8', '3', '/', ')', '(', '2', '4', '7', '5', '6', '9', '@', '_', ']', '[', '>', '<', '$', '%', '#']
 
 
+    print (cipher_text_ascii_fd)
+
+    
     ETAOIN_KEY = []
 
     key = {}
     for i in range(len(cipher_text_ascii_fd)):
-        key[cipher_text_ascii_fd[i][0]] = ETAOIN[i]
-        ETAOIN_KEY.append(cipher_text_ascii_fd[i][0])
+        key[cipher_text_ascii_fd[i][1]] = ETAOIN[i]
+        ETAOIN_KEY.append(cipher_text_ascii_fd[i][1])
 
     print(ETAOIN_KEY)
+    print(cipher_text_ascii_fd)
+    print (cipher_text_ascii_fd_2)
 
     a = encrypt(key, cipher_text_ascii)
     with open("arjun-out", 'w') as f: 
         f.write(a)
         f.close()
 
-    print(a)
+    # print(a)
     conn.clean()
     conn.send(a)
     print(conn.recv())

@@ -19,31 +19,48 @@ def main():
 	output = open(output_file, "w")
 	hash_in = open(input_file)
 	hashed_stuff = hash_in.read().split("\n")
-	words = open(dict_file).read().split("\n")
+	words = open(dict_file).read().splitlines()
 	words_5 = []
 
 	for word in words:
 		if len(word) == 5: 
 			words_5.append(word)
 
-	words_5_full = list_builder(words_5)
+	words_full = list_builder()
 	decrypted_text = []
-	for hash in hashed_stuff:
-		for word in words_5_full:
-			h = hashlib.md5(word.encode('utf-8')).hexdigest()
-			if hash == h:
-				decrypted_text.extend(word)
+	# for hash in hashed_stuff:
+	# 	for word in words_5_full:
+	# 		h = hashlib.md5(word.encode('utf-8')).hexdigest()
+	# 		if hash == h and word not in decrypted_text:
+	# 			decrypted_text.extend(word)
 
-	output_file.write("/n".join(decrypted_text))
+	for word in words_5:
+		h = hashlib.md5(word.encode()).hexdigest()
+		if h in hashed_stuff and word not in decrypted_text:
+			print(word)
+			decrypted_text.append(word)
+			del hashed_stuff[hashed_stuff.index(h)]
 
-def list_builder(words_list):
+	for word in words_full:
+		h = hashlib.md5(word.encode()).hexdigest()
+		if h in hashed_stuff and word not in decrypted_text:
+			print(word)
+			decrypted_text.append(word)
+			del hashed_stuff[hashed_stuff.index(h)]
+			if len(hashed_stuff) == 0:
+				break
+
+	print(decrypted_text)
+	output.write("\n".join(decrypted_text))
+
+def list_builder():
 	return_list = []
-	for word in words_list:
-		return_list.extend(["".join(perm) for perm in itertools.permutations(word)])
+	word="1234567890qwertyuiopasdfghjklzxcvbnmn"	
+	return_list.extend(["".join(perm) for perm in itertools.product(word, repeat=5)])
 	return return_list
 
 if __name__ == "__main__":
 	# main(sys.argv[1:])
-	t = Timer(main())
+	t = Timer(lambda: main())
 	print("Time taken: {}".format(t.timeit(number=1)))
 	

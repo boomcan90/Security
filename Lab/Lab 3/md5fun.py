@@ -8,7 +8,7 @@ from timeit import Timer
 import itertools
 
 
-def main(argv):
+def main():
 	# initializing variables
 	input_file = 'hash5.txt'
 	output_file = 'hash5_out.txt'
@@ -44,6 +44,6 @@ def list_builder(words_list):
 
 if __name__ == "__main__":
 	# main(sys.argv[1:])
-	t = Timer(main(sys.argv[1:]))
+	t = Timer(main())
 	print("Time taken: {}".format(t.timeit(number=1)))
 	

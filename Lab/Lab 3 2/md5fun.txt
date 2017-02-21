@@ -1,0 +1,71 @@
+#!/usr/bin/python3
+# Name: Arjun Singh Brar
+# ID: 1001189
+
+# Arjun Singh Brar
+# 1001189
+
+import hashlib
+from timeit import Timer
+import itertools
+
+
+def main():
+	# initializing variables
+	input_file = 'hash5.txt'
+	output_file = 'hash5_out.txt'
+	dict_file = 'words5.txt'
+
+
+
+	
+	hash_in = open(input_file)
+	hashed_stuff = {bytes.fromhex(x) for x in hash_in.read().split("\n") if x}
+	hash_in.close()
+
+	# words = set()
+	# with open(dict_file) as f: 
+	# 	words.add(f.readline().strip())
+
+	words_full = list_builder()
+	decrypted_text = []
+
+	# for word in words:
+	# 	h = hashlib.md5(word.encode()).hexdigest()
+	# 	if h in hashed_stuff and word not in decrypted_text:
+	# 		print(word)
+	# 		decrypted_text.append(word)
+	# 		hashed_stuff.pop(hashed_stuff.index(h))
+
+	for word in words_full:
+		h = hashlib.md5(word).digest()
+		if h in hashed_stuff:
+			print(word)
+			decrypted_text.append(word)
+			hashed_stuff.remove(h)
+			if len(hashed_stuff) == 0:
+				break
+
+	#print(decrypted_text)
+	output = open(output_file, "wb")
+	output.write(b"\n".join(decrypted_text))
+	output.close()
+
+def f(word):
+    h = hashlib.md5(word).digest()
+    if h in hashed_stuff:
+        print(word)
+        decrypted_text.append(word)
+        hashed_stuff.remove(h)
+        if not hashed_stuff:
+            return True
+
+# any(map(f, words_full))
+def list_builder():
+	word=b"qwertyuiopasdfghjklzxcvbnmn1234567890"
+	return_set = [bytes(perm) for perm in itertools.product(word, repeat=5)]
+	return return_set
+
+if __name__ == "__main__":
+	t = Timer(lambda: main())
+	print("Time taken: {}".format(t.timeit(number=1)))

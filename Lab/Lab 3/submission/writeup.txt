@@ -1,0 +1,37 @@
+Section 5: Salted vs non salted hashcracking: 
+With the inclusiion of an extra salting charachter, the size of the rainbow table increased dramatically (from 9.6 MB to 32 MB) . Apart from the size increase, the generation timing for the rtable was increased since there are now more charachters to take into account. 
+
+With this in mind, we can see that just for lowercase charachters and alpha numeric from 5 - 6 charachters was almost quadrupling in size, and for 1-9 characters with mixed alpha-numeric keysize, the size was 864GB.
+
+With a change from 3800 chain length to 8000, and from 600000 chain size to 2 million, initially i could crack all the hashes but with salting, i could only crack 14 out of the 15 hashes. 
+
+
+Hashes: (solved, with salting)
+14213a7df2bfe19bdb2c2e09388c80b4  nized1  hex:6e697a656431
+ab90f61d2c3753c8e78be1f48c4c746c  dsmtox  hex:64736d746f78
+412072c1221a70744336bebfbbdd663f  mlhdil  hex:6d6c6864696c
+cc54f5e97214b0620373cfcd060e7f31  cance0  hex:63616e636530
+239992d745c05aee50d6c2e2c96d7592  opmene  hex:6f706d656e65
+5666ba8a9a7c4c732ef2411a25e66ca0  lou0gr  hex:6c6f75306772
+415e6e8437915b7e3cc47ffc518ca90f  tthelz  hex:747468656c7a
+353ae675d05bf30ff3a1fb3897ba94d1  egunbi  hex:6567756e6269
+7eda6203816265158fa38631a0aef85d  aseas6  hex:617365617336
+6a3a52591a4d73bfe082f55df10a9866  hed4e5  hex:686564346535
+eb284da1bc91089d0ec2dd847cccb8bd  ofrorf  hex:6f66726f7266
+5716db974c19110587f9a1f103fad76b  tpoinw  hex:74706f696e77
+fa0efa4970632e54261ab2cd0c83f85e  sso55e  hex:73736f353565
+a578460f98b6f5224a704d1aa5467b21  owso9o  hex:6f77736f396f
+9408a8ac5d648b14a940dcbf10316983  di5gvr  hex:646935677672
+
+
+
+
+Section 6:
+Fot the hash cracking competition, i tried to use hashcrack with bruteforce and rule based cracking, but this was inefficient since this was taking 48 hours of run time. In order to bypass that, I tried running the findmyhash tool (available at https://github.com/Talanor/findmyhash), and with that i was able to crack 70 out of the 200 passwords. 
+
+Looking at alternatives available online, I found 4 websites: crackstation (https://crackstation.net), hashkiller (https://hashkiller.co.uk/md5-decrypter.aspx), md5decrypter(http://www.md5decrypter.com) and md5online(http://www.md5online.org), and using these i was able to decrypt 132 out of the 200 hashes.
+
+
+Cracked hashes are present in hashes.txt
+
+

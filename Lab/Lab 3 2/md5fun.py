@@ -5,8 +5,6 @@
 # Arjun Singh Brar
 # 1001189
 
-# time: 21 seconds
-
 import hashlib
 from timeit import Timer
 import itertools
